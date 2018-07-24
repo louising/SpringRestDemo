@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zero.srd.dao.DummyDao">
+    <select id="list" resultType="com.zero.srd.vo.DummyVO">
+        SELECT USER_ID userId,
+            LOGIN_NAME loginName,
+            USER_NAME  userName
+        FROM T_USER
+    </select>
+    
+    <insert id="addDummy">
+        insert into t_user(
+            user_name, 
+            create_time
+        )
+        values (
+            #{userName}, 
+            CURRENT_TIMESTAMP
+        )
+    </insert>
+
+    <!-- Paging query Dummy -->
+    <sql id="sqlDummyPage">
+        select 
+            user_id   userId, 
+            user_name userName
+        from T_USER
+        where USER_ID <![CDATA[>=]]> #{userId}
+    </sql>
+    <select id="findDummyPage" resultType="com.zero.srd.vo.DummyVO">
+        <include refid="sqlDummyPage"/>
+        limit #{startIndex}, #{pageSize}
+    </select>
+
+    <select id="findDummyPageCount" resultType="int" parameterType="com.zero.srd.vo.DummyVO">
+        select count(1) recordCount from (<include refid="sqlDummyPage"/>)
+    </select>    
+    
+    <!-- 
+    <select id="findUsersPage" resultType="com.zero.srd.vo.DummyVO">
+        <include refid="findUserSQL" />
+        limit #{startIndex}, #{pageSize}
+    </select>
+    
+    <select id="findUsersPageCount" resultType="int">
+        select count(1) recordCount from (
+        <include refid="findUserSQL" />
+        )
+    </select>
+
+    <update id="updateUser">
+        update t_user 
+        set
+            <if test="loginName != null and loginName != ''">
+                login_name=#{loginName},
+            </if>
+            <if test="userName != null and userName != ''">
+                user_name=#{userName},
+            </if>
+            <if test="userEmail != null and userEmail != ''">
+                user_email=#{userEmail},
+            </if>
+            <if test="userPwd != null and userPwd != ''">
+                user_pwd=#{userPwd},
+            </if>
+            
+            update_by=#{updateBy},            
+            update_time=now()
+        where user_id=#{userId}
+    </update>
+
+    <delete id="delUser">
+        delete from t_user where user_id in
+        <foreach collection="list" item="item" index="index" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+     -->
+</mapper>
