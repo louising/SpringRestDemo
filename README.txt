@@ -22,7 +22,7 @@ Run
     <property name="basePackage" value="com.zero.srd.dao" />
 </bean>
 
-4) spring-mvc.xml 
+4) SpringMVC-servlet.xml
 //Config Spring component scan package
 <context:component-scan base-package="com.zero.srd" />
 
@@ -41,5 +41,8 @@ DELETE http://localhost:8080/SpringRestDemo/dummy/del?dummyName=Alice001 BODY { 
  
   POST http://localhost:8080/SpringRestDemo/dummy/uploadDoc BODY form-data
    GET http://localhost:8080/SpringRestDemo/dummy/downloadLog
-   GET http://localhost:8080/SpringRestDemo/dummy/sysInfo 
+   GET http://localhost:8080/SpringRestDemo/dummy/sysInfo
+   
+7) API docs
+http://localhost:8080/SpringRestDemo/swagger-ui.html
 

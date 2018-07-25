@@ -49,46 +49,13 @@ public class DummyController extends BaseController {
     static final String RESPONSE_TYPE    = "application/json;charset=UTF-8"; //Response MIME type
     
     @Autowired
-    private DummyService service;
+    private DummyService dummyService;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET) //produces = "application/json; charset=utf-8", text/plain
     public @ResponseBody ResponseVO list() {
         return process(new AppCallable() {
             public Object run() throws ServiceException {
-                return service.list();
-            }
-        });
-    }
-
-    @RequestMapping(value = "/getUser1", method = RequestMethod.GET)
-    public @ResponseBody ResponseVO getUser(DummyVO dummyVO) {
-        log.info("getUser1(): " + dummyVO);
-
-        return process(new AppCallable() {
-            public Object run() throws ServiceException {
-                return service.getUser(dummyVO.getUserName());
-            }
-        });
-    }
-
-    @RequestMapping(value = "/getUser2/{userName}", method = RequestMethod.GET)
-    public @ResponseBody ResponseVO getUser2(final @PathVariable String userName) {
-        log.info("getUser2(): " + userName);
-
-        return process(new AppCallable() {
-            public Object run() throws ServiceException {
-                return service.getUser(userName);
-            }
-        });
-    }
-    
-    @RequestMapping(value = "/getUser3", method = RequestMethod.GET)
-    public @ResponseBody ResponseVO getUser3(final @RequestParam String userName) {
-        log.info("getUser3(): " + userName);
-
-        return process(new AppCallable() {
-            public Object run() throws ServiceException {
-                return service.getUser(userName);
+                return dummyService.list();
             }
         });
     }
@@ -98,7 +65,7 @@ public class DummyController extends BaseController {
         return process(new AppRunnable() {
             public void run() throws ServiceException {
                 log.info("addUser(): " + dummyVO);
-                service.addDummy(dummyVO);
+                dummyService.addDummy(dummyVO);
             }
         });
     }
@@ -125,25 +92,25 @@ public class DummyController extends BaseController {
     public @ResponseBody ResponseVO findDummyPage(@RequestBody DummyVO param, PageVO pageVO) {
         return process(new AppCallable() {
             public Object run() throws ServiceException {
-                return service.findDummyPage(param, pageVO);
+                return dummyService.findDummyPage(param, pageVO);
             }
         });
     }  
     
- 
     @RequestMapping(path = "/downloadLog", method = RequestMethod.GET, produces = RESPONSE_TYPE)
     public @ResponseBody ResponseVO downloadLog() {
         return process(new AppRunnable() {
             public void run() throws ServiceException {
-                service.downloadLog();
+                dummyService.downloadLog();
             }
         });
     }
 
     @RequestMapping(path = "/uploadDoc", consumes = "multipart/form-data", method = RequestMethod.POST, produces = RESPONSE_TYPE)
-    public @ResponseBody ResponseVO uploadDoc(@RequestParam MultipartFile multiFile) {
+    public @ResponseBody ResponseVO uploadDoc(@RequestParam MultipartFile multiFile, @RequestParam String userName) {
         return process(new AppRunnable() {
             public void run() throws ServiceException {
+                log.info("UserName: " + userName);
                 try (InputStream in = multiFile.getInputStream()) {
                      FileUtils.copyInputStreamToFile(in, new File("c:/" + multiFile.getOriginalFilename()));
                 } catch (IOException e) {
@@ -154,13 +121,46 @@ public class DummyController extends BaseController {
         });
     }
     
-    
     @RequestMapping(path = "/sysInfo", method = RequestMethod.GET, produces = RESPONSE_TYPE)
     public @ResponseBody ResponseVO sysInfo() {
         
         return process(new AppCallable() {
             public Object run() throws ServiceException {
-                return service.getSysInfo();
+                return dummyService.getSysInfo();
+            }
+        });
+    }
+    
+    //Fill in @RequestParam to DummyVO
+    @RequestMapping(value = "/getUser1", method = RequestMethod.GET)
+    public @ResponseBody ResponseVO getUser(DummyVO dummyVO) {
+        log.info("getUser1(): " + dummyVO);
+
+        return process(new AppCallable() {
+            public Object run() throws ServiceException {
+                return dummyService.getUser(dummyVO.getUserName());
+            }
+        });
+    }
+
+    @RequestMapping(value = "/getUser2/{userName}", method = RequestMethod.GET)
+    public @ResponseBody ResponseVO getUser2(final @PathVariable String userName) {
+        log.info("getUser2(): " + userName);
+
+        return process(new AppCallable() {
+            public Object run() throws ServiceException {
+                return dummyService.getUser(userName);
+            }
+        });
+    }
+    
+    @RequestMapping(value = "/getUser3", method = RequestMethod.GET)
+    public @ResponseBody ResponseVO getUser3(final @RequestParam String userName) {
+        log.info("getUser3(): " + userName);
+
+        return process(new AppCallable() {
+            public Object run() throws ServiceException {
+                return dummyService.getUser(userName);
             }
         });
     }    

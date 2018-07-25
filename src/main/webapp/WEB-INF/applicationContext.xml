@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <beans xmlns="http://www.springframework.org/schema/beans" 
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-       xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:tx="http://www.springframework.org/schema/tx" 
-       xmlns:mvc="http://www.springframework.org/schema/mvc"
-       xsi:schemaLocation= "http://www.springframework.org/schema/beans 
-                            http://www.springframework.org/schema/beans/spring-beans-4.3.xsd 
-                            http://www.springframework.org/schema/context 
-                            http://www.springframework.org/schema/context/spring-context-4.3.xsd  
-                            http://www.springframework.org/schema/tx 
-                            http://www.springframework.org/schema/tx/spring-tx-4.3.xsd 
-                            http://www.springframework.org/schema/mvc 
-                            http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:tx="http://www.springframework.org/schema/tx" 
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xsi:schemaLocation= "http://www.springframework.org/schema/beans 
+                         http://www.springframework.org/schema/beans/spring-beans-4.3.xsd 
+                         http://www.springframework.org/schema/context 
+                         http://www.springframework.org/schema/context/spring-context-4.3.xsd  
+                         http://www.springframework.org/schema/tx 
+                         http://www.springframework.org/schema/tx/spring-tx-4.3.xsd 
+                         http://www.springframework.org/schema/mvc 
+                         http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd">
 
     <!--
-      beans/org.springframework.beans.factory.xml  /spring-beans-3.2.xsd
-    context/org.springframework.context.config     /spring-context-3.0.xsd
+      beans/org.springframework.beans.factory.xml  /spring-beans-4.3.xsd
+    context/org.springframework.context.config     /spring-context-4.3.xsd
     context/org.springframework.scheduling.config  /spring-task-4.3.xsd
-         tx/org.springframework.transaction.config /spring-tx.xsd
-    web-mvc/org.springframework.web.servlet.config /spring-mvc-3.2.xsd
+         tx/org.springframework.transaction.config /spring-tx-4.3.xsd
+    web-mvc/org.springframework.web.servlet.config /spring-mvc-4.3.xsd
     -->
-            
+
     <bean name="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location" value="classpath:jdbc.properties"/>
     </bean>
