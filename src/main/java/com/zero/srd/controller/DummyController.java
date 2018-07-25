@@ -106,11 +106,12 @@ public class DummyController extends BaseController {
         });
     }
 
+    //Fill the form parameters to DummyVO, if single form param, use @RequestParam userName
     @RequestMapping(path = "/uploadDoc", consumes = "multipart/form-data", method = RequestMethod.POST, produces = RESPONSE_TYPE)
-    public @ResponseBody ResponseVO uploadDoc(@RequestParam MultipartFile multiFile, @RequestParam String userName) {
+    public @ResponseBody ResponseVO uploadDoc(@RequestParam MultipartFile multiFile, DummyVO param) {
         return process(new AppRunnable() {
             public void run() throws ServiceException {
-                log.info("UserName: " + userName);
+                log.info("param: " + param);
                 try (InputStream in = multiFile.getInputStream()) {
                      FileUtils.copyInputStreamToFile(in, new File("c:/" + multiFile.getOriginalFilename()));
                 } catch (IOException e) {
@@ -133,7 +134,7 @@ public class DummyController extends BaseController {
     
     //Fill in @RequestParam to DummyVO
     @RequestMapping(value = "/getUser1", method = RequestMethod.GET)
-    public @ResponseBody ResponseVO getUser(DummyVO dummyVO) {
+    public @ResponseBody ResponseVO getUser1(DummyVO dummyVO) {
         log.info("getUser1(): " + dummyVO);
 
         return process(new AppCallable() {
@@ -143,6 +144,7 @@ public class DummyController extends BaseController {
         });
     }
 
+    //@PathVariable
     @RequestMapping(value = "/getUser2/{userName}", method = RequestMethod.GET)
     public @ResponseBody ResponseVO getUser2(final @PathVariable String userName) {
         log.info("getUser2(): " + userName);

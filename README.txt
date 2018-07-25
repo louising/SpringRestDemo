@@ -46,3 +46,10 @@ DELETE http://localhost:8080/SpringRestDemo/dummy/del?dummyName=Alice001 BODY { 
 7) API docs
 http://localhost:8080/SpringRestDemo/swagger-ui.html
 
+Dev Note
+-------------------------------------
+1) Dao        //DummyDao.java, DummyDao.xml
+2) Service    //DummyServiceImpl.java
+3) Controller //DummyController.java
+
+CronJob //ScheduledJob.java
