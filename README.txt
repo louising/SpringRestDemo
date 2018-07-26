@@ -1,3 +1,11 @@
+-------------------------------
+cd ../SpringRestDemo
+git init
+git remote add origin git@github.com:louising/SpringRestDemo.git
+git checkout -b dev
+-------------------------------
+
+
 Spring MVC Demo: build RESTful web service  
 
 Run
