@@ -31,8 +31,8 @@ public class CorsFilter implements Filter {
      *         It is an OPTIONS request, using three HTTP request headers: Access-Control-Request-Method, Access-Control-Request-Headers, and the Origin header.
      *         A preflight request is automatically issued by a browser, when needed. In normal cases, front-end developers don't need to craft such requests themselves.
      *         
-     * Access-Control-Allow-Credentials(Optional)
-     *     If allowed to send cookie, default is false
+     * Access-Control-Allow-Credentials(Optional, default: false)
+     *     whether is allowed to send cookies
      * 
      * Access-Control-Max-Age
      *     How many seconds will be cached for the response result of preflight request for cross domain access(that send a OPTIONS request), -1 forbidden
@@ -47,7 +47,7 @@ public class CorsFilter implements Filter {
         res.setHeader("Access-Control-Allow-Origin", "*");
         res.setHeader("Access-Control-Allow-Headers", "Origin, No-Cache, X-Requested-With, If-Modified-Since, Pragma, Last-Modified, Cache-Control, Expires, Content-Type, X-E4M-With,userId,token");        
         res.setHeader("Access-Control-Allow-Credentials", "true"); //if cookie is allowed
-        res.setHeader("Access-Control-Max-Age", "0");
+        res.setHeader("Access-Control-Max-Age", "0"); //0: delete cookie -1: be deleted when browser exits. 1: expire in 1 second
 
         chain.doFilter(request, response);
     }

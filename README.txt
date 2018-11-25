@@ -1,5 +1,5 @@
 -------------------------------
-cd ../SpringRestDemo
+cd G:\workspace\workspace_ee\SpringRestDemo
 git init
 git remote add origin git@github.com:louising/SpringRestDemo.git
 git checkout -b dev
@@ -37,10 +37,11 @@ Run
 5) src/main/webapp/WEB-INF/web.xml
 Config Filter and Servlet if necessary
 
-6) Start it in Tomcat
+6) Start it in Tomcat 8.0.33
 mvn package
 Put the war in TOMCAT_HOME/webapps
 
+7) Visit
   POST http://localhost:8080/SpringRestDemo/dummy/addUser BODY { userId: 101, userName: "Alice"}
 DELETE http://localhost:8080/SpringRestDemo/dummy/del?dummyName=Alice001 BODY { "userId": 1, "userName": "Alice" }
    PUT http://localhost:8080/SpringRestDemo/dummy/upd?userId=102&userName=Alice02 BODY { "userId": 103, "userName": "Alice03" }  
@@ -51,7 +52,7 @@ DELETE http://localhost:8080/SpringRestDemo/dummy/del?dummyName=Alice001 BODY { 
    GET http://localhost:8080/SpringRestDemo/dummy/downloadLog
    GET http://localhost:8080/SpringRestDemo/dummy/sysInfo
    
-7) API docs
+http://localhost:8080/SpringRestDemo
 http://localhost:8080/SpringRestDemo/swagger-ui.html
 
 Dev Note

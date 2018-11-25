@@ -4,7 +4,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
     xmlns:context="http://www.springframework.org/schema/context"
     xmlns:mvc="http://www.springframework.org/schema/mvc"
-    xmlns:task="http://www.springframework.org/schema/task"  
+    xmlns:task="http://www.springframework.org/schema/task"
     xsi:schemaLocation="http://www.springframework.org/schema/beans 
                         http://www.springframework.org/schema/beans/spring-beans-4.3.xsd 
                         http://www.springframework.org/schema/context 
@@ -21,12 +21,7 @@
          tx/org.springframework.transaction.config /spring-tx-4.3.xsd
     web-mvc/org.springframework.web.servlet.config /spring-mvc-4.3.xsd
     -->
-    <import resource="applicationContext.xml"></import>
-    
-    <task:annotation-driven />
-    <mvc:default-servlet-handler />  <!-- Have webapp/index.html take effect -->
-    <mvc:annotation-driven />
-    <context:component-scan base-package="com.zero.srd" />
+    <import resource="applicationContext.xml"></import>    
 
     <!-- Avoid download file when request AJAX in IE BEGIN 
     <bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
@@ -46,11 +41,9 @@
     </bean>
     Avoid download file when request AJAX in IE END -->
 
-    <!-- -->    
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-        <property name="defaultEncoding" value="utf-8" />
-        <property name="maxUploadSize" value="102400000" />
-        <property name="maxInMemorySize" value="40960" />
+        <property name="defaultEncoding" value="utf-8"/>
+        <property name="maxUploadSize" value="102400000"/> <!-- 100M -->
+        <property name="maxInMemorySize" value="40960"/> <!-- 4K -->
     </bean>
-    
 </beans>

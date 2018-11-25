@@ -51,14 +51,14 @@
     </servlet-mapping>
     
     <session-config>
-        <session-timeout>30</session-timeout>
+        <session-timeout>30</session-timeout> <!-- minutes -->
         <cookie-config>
             <name>JSESSIONID</name>
             <domain>zero.com</domain>
             <path>/</path>
             <http-only>true</http-only>
             <secure>false</secure>
-            <max-age>1800</max-age>
+            <max-age>1800</max-age> <!-- seconds -->
         </cookie-config>
     </session-config>
     
